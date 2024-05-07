@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.form`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,11 +44,17 @@ const Search = styled.button`
 `;
 
 function FormSearch({ query, setQuery }) {
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setQuery(e.target.elements.search.value);
+  }
+
   return (
-    <Container>
+    <Container onSubmit={handleSubmit}>
       <Input
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        name="search"
+        defaultValue={query}
         type="search"
         placeholder="Nhập tên dự án"
       />
