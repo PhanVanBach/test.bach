@@ -35,8 +35,9 @@ const Description = styled.p`
   color: #6a696d;
 `;
 
-const Code = styled.p`
-  width: 41px;
+const Code = styled.div`
+  display: flex;
+  width: 50px;
   height: 22px;
   border-radius: 100px;
   border: solid 1px #e4e4e4;
@@ -44,13 +45,22 @@ const Code = styled.p`
   font-weight: 600;
   font-size: 12px;
   line-height: 14px;
-  text-align: center;
+  justify-content: center;
   align-items: center;
+  margin-left: 8px;
 `;
 
 const Icon = styled.span`
   width: 24px;
   height: 24px;
+
+  img {
+    transition: filter 0.3s ease;
+  }
+
+  &:hover img {
+    filter: invert(1);
+  }
 `;
 
 const ProjectCode = styled.div`
@@ -93,7 +103,10 @@ function CardList({ project }) {
           <Icon>
             <img src={"public/assets/icon/Group 49.svg"} alt="mã dự án" />{" "}
           </Icon>
-          <Code> {projectCode}</Code>
+          <Code>
+            {" "}
+            <span>{projectCode}</span>{" "}
+          </Code>
         </ProjectCode>
         <User>
           <Icon>
