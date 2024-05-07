@@ -33,11 +33,10 @@ const Description = styled.p`
   font-weight: 400;
   line-height: 22px;
   color: #6a696d;
-  overflow: hidden;
 `;
 
-const Code = styled.div`
-  width: 50px;
+const Code = styled.p`
+  width: 41px;
   height: 22px;
   border-radius: 100px;
   border: solid 1px #e4e4e4;
@@ -47,7 +46,6 @@ const Code = styled.div`
   line-height: 14px;
   text-align: center;
   align-items: center;
-  margin-left: 8px;
 `;
 
 const Icon = styled.span`
@@ -95,10 +93,7 @@ function CardList({ project }) {
           <Icon>
             <img src={"public/assets/icon/Group 49.svg"} alt="mã dự án" />{" "}
           </Icon>
-          <Code>
-            {" "}
-            <span>{projectCode}</span>
-          </Code>
+          <Code> {projectCode}</Code>
         </ProjectCode>
         <User>
           <Icon>
