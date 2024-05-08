@@ -19,7 +19,7 @@ const Input = styled.input`
   border: none;
   outline: none;
   &:focus {
-    outline: 1px solid rgba(211, 211, 211, 0.5); /* Thêm đường viền nhạt khi focus */
+    outline: 1px solid rgba(211, 211, 211, 0.5);
   }
   font-size: 14px;
 `;

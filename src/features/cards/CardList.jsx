@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Status from "../../ui/Status";
+import { useState } from "react";
 
 const Header = styled.div`
   display: flex;
@@ -21,11 +22,16 @@ const Footer = styled.div`
   height: 52px;
 `;
 
-const H3 = styled.h3`
-  font-size: 20px;
+const Name = styled.h4`
+  font-size: 18px;
   font-weight: 600;
   line-height: 28px;
   margin: 4px 0;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `;
 
 const Description = styled.p`
@@ -59,7 +65,8 @@ const Icon = styled.span`
   }
 
   &:hover img {
-    filter: invert(1);
+    filter: brightness(0) saturate(100%) invert(15%) sepia(52%) saturate(4559%)
+      hue-rotate(203deg) brightness(96%) contrast(100%);
   }
 `;
 
@@ -70,10 +77,29 @@ const ProjectCode = styled.div`
   align-items: center;
 `;
 
+const AvatarContainer = styled.div`
+  position: relative;
+`;
+
 const Avatar = styled.img`
   width: 42px;
   height: 42px;
   border-radius: 50%;
+`;
+
+const NameAvatar = styled.p`
+  position: absolute;
+  text-align: center;
+  width: 130px;
+  bottom: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(86, 86, 86, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  visibility: ${({ hover }) => (hover ? "visible" : "hidden")};
 `;
 
 const Card = styled.div`
@@ -81,20 +107,26 @@ const Card = styled.div`
   padding: 24px;
   border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   }
 `;
 
 const User = styled.div``;
 
 function CardList({ project }) {
+  const [hover, setHover] = useState(false);
+
   const { description, name, status, projectCode, lead } = project;
 
   const avatar = lead?.avatar?.small;
+
+  const nameAvatar = lead?.name;
+
+  console.log(project);
 
   return (
     <Card>
@@ -119,7 +151,7 @@ function CardList({ project }) {
       </Header>
 
       <Body>
-        <H3>{name}</H3>
+        <Name>{name}</Name>
         <Description>
           {description ? description : "Không có mô tả"}
         </Description>
@@ -127,12 +159,16 @@ function CardList({ project }) {
 
       <Footer>
         <Status status={status} />
-        <div>
+        <AvatarContainer
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
           <Avatar
             src={avatar ? avatar : "public/assets/icon/user-icon.svg"}
             alt="profile"
           />
-        </div>
+          <NameAvatar hover={hover}>{nameAvatar}</NameAvatar>
+        </AvatarContainer>
       </Footer>
     </Card>
   );
