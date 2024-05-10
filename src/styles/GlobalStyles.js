@@ -14,10 +14,9 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
-
-  min-height: 100vh;
-  line-height: 1.5;
-  font-size: 1.6rem;
+  font-weight: 400;
+  color: #555;
+  line-height: 1;
 }
 
 `;
