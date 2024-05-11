@@ -12,7 +12,7 @@ const Container = styled.div`
   background-color: #f3f2f6;
   width: 100%;
   padding: 25px;
-  max-width: 1128px;
+  max-width: 1180px;
   margin: 0 auto;
 `;
 
@@ -46,8 +46,12 @@ const GridStyle = styled.div`
   gap: 25px;
   grid-template-columns: 1fr 1fr 1fr;
 
-  @media (max-width: 932px) {
+  @media (max-width: 1200px) {
     grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
   }
 `;
 
