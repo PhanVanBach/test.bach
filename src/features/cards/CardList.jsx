@@ -1,177 +1,111 @@
+import { useEffect, useState } from "react";
+
 import styled from "styled-components";
-import Status from "../../ui/Status";
-import { useState } from "react";
+import Empty from "../../ui/Empty";
+import Spinner from "../../ui/Spinner";
+import Card from "./Card/Card";
 
-const Header = styled.div`
+import { getData } from "../../server/apiDataCard";
+import FormSearch from "../../ui/FormSearch/FormSearch";
+
+const Container = styled.div`
+  background-color: #f3f2f6;
+  width: 100%;
+  padding: 25px;
+  max-width: 1128px;
+  margin: 0 auto;
+`;
+
+const Row = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin: 16px 0;
 `;
 
-const Body = styled.div`
-  max-width: 312px;
-  height: 76px;
-  padding-top: 4px;
-  padding-bottom: 140px;
-  border-bottom: solid 1px #e5e5e5;
+const Button = styled.button`
+  background-color: #624bff;
+  border: none;
+  width: 115px;
+  height: 34px;
+  border-radius: 8px;
+  padding: 6px 8px 6px 8px;
+  color: #fff;
+  cursor: pointer;
 `;
 
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-top: 8px;
-  height: 52px;
-`;
-
-const Name = styled.h4`
-  font-size: 18px;
+const Title = styled.h3`
+  font-size: 20px;
   font-weight: 600;
   line-height: 28px;
-  margin: 4px 0;
-
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
 `;
 
-const Description = styled.p`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 22px;
-  color: #6a696d;
-`;
+const GridStyle = styled.div`
+  display: grid;
+  gap: 25px;
+  grid-template-columns: 1fr 1fr 1fr;
 
-const Code = styled.div`
-  display: flex;
-  width: 50px;
-  height: 22px;
-  border-radius: 100px;
-  border: solid 1px #e4e4e4;
-  padding: 4px 8px 4px 8px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 14px;
-  justify-content: center;
-  align-items: center;
-  margin-left: 8px;
-`;
-
-const Icon = styled.span`
-  width: 24px;
-  height: 24px;
-
-  img {
-    transition: filter 0.3s ease;
-  }
-
-  &:hover img {
-    filter: brightness(0) saturate(100%) invert(15%) sepia(52%) saturate(4559%)
-      hue-rotate(203deg) brightness(96%) contrast(100%);
+  @media (max-width: 932px) {
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
-const ProjectCode = styled.div`
-  display: flex;
-  width: 66px;
-  justify-content: space-between;
-  align-items: center;
-`;
+function CardList() {
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-const AvatarContainer = styled.div`
-  position: relative;
-`;
+  useEffect(() => {
+    setIsLoading(true);
+    getData(query)
+      .then((responseData) => {
+        setData(responseData);
+      })
+      .catch((error) => {
+        alert(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [query]);
 
-const Avatar = styled.img`
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-`;
-
-const NameAvatar = styled.p`
-  position: absolute;
-  line-height: 1.5;
-  text-align: center;
-  width: 130px;
-  bottom: calc(100% + 16px);
-  left: 0;
-  transform: translateX(-50%);
-  background-color: rgba(105, 105, 105, 0.8);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  visibility: ${({ hover }) => (hover ? "visible" : "hidden")};
-`;
-
-const Card = styled.div`
-  background-color: #fff;
-  padding: 24px;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  }
-`;
-
-const User = styled.div``;
-
-function CardList({ project }) {
-  const [hover, setHover] = useState(false);
-
-  const { description, name, status, projectCode, lead } = project;
-
-  const avatar = lead?.avatar?.small;
-
-  const nameAvatar = lead?.name;
-
-  console.log(project);
+  const projects = data.flatMap((data) => data.projects);
 
   return (
-    <Card>
-      <Header>
-        <ProjectCode>
-          <Icon>
-            <img src={"public/assets/icon/Group 49.svg"} alt="mã dự án" />{" "}
-          </Icon>
-          <Code>
-            {" "}
-            <span>{projectCode}</span>{" "}
-          </Code>
-        </ProjectCode>
-        <User>
-          <Icon>
-            <img src="public/assets/icon/layer1.svg" />
-          </Icon>
-          <Icon style={{ marginLeft: "12px" }}>
-            <img src="public/assets/icon/Vector.svg" />
-          </Icon>
-        </User>
-      </Header>
+    <Container>
+      <Row>
+        <Title style={{ margin: 0 }}>Tất cả dự án</Title>
+        <Button>Thêm dự án</Button>
+      </Row>
 
-      <Body>
-        <Name>{name}</Name>
-        <Description>
-          {description ? description : "Không có mô tả"}
-        </Description>
-      </Body>
+      <FormSearch
+        query={query}
+        setQuery={setQuery}
+        placeholder="nhập tên dự án"
+      />
 
-      <Footer>
-        <Status status={status} />
-        <AvatarContainer
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
-          <Avatar
-            src={avatar ? avatar : "public/assets/icon/user-icon.svg"}
-            alt="profile"
-          />
-          <NameAvatar hover={hover}>{nameAvatar}</NameAvatar>
-        </AvatarContainer>
-      </Footer>
-    </Card>
+      <Row>
+        <p>
+          Tổng dự án <strong>50</strong>
+        </p>
+        <p>
+          Sắp xếp theo: <strong>Mới nhất</strong>
+        </p>
+      </Row>
+
+      {data.length > 0 ? (
+        <GridStyle>
+          {projects.map((project) => (
+            <Card project={project} key={project.id} />
+          ))}
+        </GridStyle>
+      ) : isLoading ? (
+        <Spinner />
+      ) : (
+        <Empty resource={query} />
+      )}
+    </Container>
   );
 }
 

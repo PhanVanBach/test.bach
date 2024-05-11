@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 const Container = styled.form`
@@ -16,7 +17,7 @@ const Input = styled.input`
   border-radius: 8px;
   padding: 8px 8px 8px 16px;
   gap: 16px;
-  border: none;
+  border: solid 1px #d5d5d5;
   outline: none;
   &:focus {
     outline: 1px solid rgba(211, 211, 211, 0.5);
@@ -43,7 +44,7 @@ const Search = styled.button`
   border: none;
 `;
 
-function FormSearch({ query, setQuery }) {
+function FormSearch({ query, setQuery, placeholder }) {
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -56,7 +57,7 @@ function FormSearch({ query, setQuery }) {
         name="search"
         defaultValue={query}
         type="search"
-        placeholder="Nhập tên dự án"
+        placeholder={placeholder}
       />
       <ButtonSearch>
         <Search>Tìm kiếm</Search>
