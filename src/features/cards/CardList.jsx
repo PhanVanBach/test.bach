@@ -89,12 +89,13 @@ const Avatar = styled.img`
 
 const NameAvatar = styled.p`
   position: absolute;
+  line-height: 1.5;
   text-align: center;
   width: 130px;
   bottom: calc(100% + 16px);
-  left: 50%;
+  left: 0;
   transform: translateX(-50%);
-  background-color: rgba(86, 86, 86, 0.8);
+  background-color: rgba(105, 105, 105, 0.8);
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
@@ -107,7 +108,7 @@ const Card = styled.div`
   padding: 24px;
   border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
