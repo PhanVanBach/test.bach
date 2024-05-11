@@ -1,11 +1,11 @@
-import Cards from "./features/cards/Cards";
+import CardList from "./features/cards/CardList";
 import GlobalStyles from "./styles/GlobalStyles";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Cards />
+      <CardList />
     </>
   );
 }
