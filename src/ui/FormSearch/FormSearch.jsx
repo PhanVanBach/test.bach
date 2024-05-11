@@ -60,7 +60,7 @@ function FormSearch({ query, setQuery, placeholder }) {
         placeholder={placeholder}
       />
       <ButtonSearch>
-        <Search>Tìm kiếm</Search>
+        <Button>Tìm kiếm</Button>
       </ButtonSearch>
     </Container>
   );
