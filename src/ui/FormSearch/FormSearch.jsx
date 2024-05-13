@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import styled from "styled-components";
-import Button from "../Button/Button";
+import styled from 'styled-components';
+import Button from '../Button/Button';
 
 const Container = styled.form`
   display: flex;
@@ -34,17 +34,6 @@ const ButtonSearch = styled.div`
   margin: 5px;
 `;
 
-const Search = styled.button`
-  background-color: #624bff;
-  width: 115px;
-  height: 34px;
-  border-radius: 8px;
-  padding: 6px 8px 6px 8px;
-  color: #fff;
-  cursor: pointer;
-  border: none;
-`;
-
 function FormSearch({ query, setQuery, placeholder }) {
   function handleSubmit(e) {
     e.preventDefault();
@@ -53,11 +42,11 @@ function FormSearch({ query, setQuery, placeholder }) {
   }
 
   return (
-    <Container onSubmit={handleSubmit}>
+    <Container onSubmit={handleSubmit} data-testid='form-search'>
       <Input
-        name="search"
+        name='search'
         defaultValue={query}
-        type="search"
+        type='search'
         placeholder={placeholder}
       />
       <ButtonSearch>
