@@ -1,17 +1,17 @@
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyleButton = styled.button`
-  width: ${(props) => props.width || "115px"};
-  height: ${(props) => props.height || "34px"};
-  color: ${(props) => props.textColor || "#fff"};
+  width: ${(props) => props.width || '115px'};
+  height: ${(props) => props.height || '34px'};
+  color: ${(props) => props.textColor || '#fff'};
   border-radius: 8px;
   cursor: pointer;
   border: none;
 
   .storybook-button--primary {
-    color: ${(props) => props.textColor || "#fff"};
-    background-color: ${(props) => props.background || "#624bff"};
+    color: ${(props) => props.textColor || '#fff'};
+    background-color: ${(props) => props.background || '#624bff'};
   }
   .storybook-button--secondary {
     color: #333;
@@ -27,7 +27,7 @@ const StyleButton = styled.button`
     font-size: 14px;
     padding: 6px 8px;
 
-    color: ${(props) => props.textColor || "#fff"};
+    color: ${(props) => props.textColor || '#fff'};
     background-color: ${(props) => props.background};
   }
   .storybook-button--large {
@@ -38,13 +38,13 @@ const StyleButton = styled.button`
 
 function Button({ children, backgroundColor, size, primary, ...props }) {
   const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
+    ? 'storybook-button--primary'
+    : 'storybook-button--secondary';
 
   return (
     <StyleButton
       className={[`storybook-button, storybook-button--${size}`, mode].join(
-        " "
+        ' '
       )}
       style={backgroundColor && { backgroundColor }}
       {...props}
@@ -59,18 +59,18 @@ Button.propTypes = {
 
   backgroundColor: PropTypes.string,
 
-  size: PropTypes.oneOf(["small", "medium", "large"]),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 
   children: PropTypes.string.isRequired,
 
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 Button.defaultProps = {
-  backgroundColor: "#624bff",
+  backgroundColor: '#624bff',
   primary: false,
-  size: "medium",
-  onClick: undefined,
+  size: 'medium',
+  onClick: undefined
 };
 
 export default Button;
