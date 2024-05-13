@@ -8,7 +8,8 @@ const Header = styled.div`
 `;
 
 const Body = styled.div`
-  max-width: 312px;
+  /* max-width: 312px; */
+  width: 100%;
   height: 76px;
   padding-top: 4px;
   padding-bottom: 140px;
@@ -110,6 +111,7 @@ const CardStyle = styled.div`
   min-width: 360px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  text-align: center;
 
   &:hover {
     transform: translateY(-5px);

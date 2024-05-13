@@ -15,6 +15,7 @@ const Container = styled.div`
   padding: 25px;
   max-width: 1180px;
   margin: 0 auto;
+
 `;
 
 const Row = styled.header`
@@ -24,17 +25,6 @@ const Row = styled.header`
   font-size: 14px;
   margin: 16px 0;
 `;
-
-// const Button = styled.button`
-//   background-color: #624bff;
-//   border: none;
-//   width: 115px;
-//   height: 34px;
-//   border-radius: 8px;
-//   padding: 6px 8px 6px 8px;
-//   color: #fff;
-//   cursor: pointer;
-// `;
 
 const Title = styled.h3`
   font-size: 20px;
@@ -46,6 +36,7 @@ const GridStyle = styled.div`
   display: grid;
   gap: 25px;
   grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
 
   @media (max-width: 1200px) {
     grid-template-columns: 1fr 1fr;
