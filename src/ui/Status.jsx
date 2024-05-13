@@ -8,6 +8,9 @@ const TT = styled.div`
 `;
 
 const Enum = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 22px;
   width: 100px;
   border-radius: 100px;
@@ -15,9 +18,8 @@ const Enum = styled.p`
   color: #fff;
   font-size: 12px;
   font-weight: 400;
-  line-height: 14px;
+  line-height: 1px;
   margin-top: 4px;
-  text-align: center;
 
   background-color: ${(props) => {
     switch (props.status) {
