@@ -111,7 +111,6 @@ const CardStyle = styled.div`
   min-width: 360px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  text-align: center;
 
   &:hover {
     transform: translateY(-5px);
