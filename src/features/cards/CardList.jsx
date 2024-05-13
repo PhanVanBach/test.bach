@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Empty from "../../ui/Empty";
 import Spinner from "../../ui/Spinner";
 import Card from "./Card/Card";
+import Button from "../../ui/Button/Button";
 
 import { getData } from "../../server/apiDataCard";
 import FormSearch from "../../ui/FormSearch/FormSearch";
@@ -24,16 +25,16 @@ const Row = styled.header`
   margin: 16px 0;
 `;
 
-const Button = styled.button`
-  background-color: #624bff;
-  border: none;
-  width: 115px;
-  height: 34px;
-  border-radius: 8px;
-  padding: 6px 8px 6px 8px;
-  color: #fff;
-  cursor: pointer;
-`;
+// const Button = styled.button`
+//   background-color: #624bff;
+//   border: none;
+//   width: 115px;
+//   height: 34px;
+//   border-radius: 8px;
+//   padding: 6px 8px 6px 8px;
+//   color: #fff;
+//   cursor: pointer;
+// `;
 
 const Title = styled.h3`
   font-size: 20px;

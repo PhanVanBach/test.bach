@@ -5,11 +5,12 @@ const meta = {
   title: "Common/Button",
   component: Button,
   parameters: {
-    layout: "top",
+    layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
     backgroundColor: { control: "color" },
+    
   },
   args: { onClick: fn() },
 };
