@@ -101,7 +101,7 @@ const NameAvatar = styled.p`
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
-  visibility: ${({ hover }) => (hover ? "visible" : "hidden")};
+  visibility: ${({ $hover }) => ($hover ? "visible" : "hidden")};
 `;
 
 const CardStyle = styled.div`
@@ -128,8 +128,6 @@ function Card({ project }) {
   const avatar = lead?.avatar?.small;
 
   const nameAvatar = lead?.name;
-
-  console.log(project);
 
   return (
     <CardStyle>
@@ -161,7 +159,7 @@ function Card({ project }) {
       </Body>
 
       <Footer>
-        <Status status={status} />
+        <Status $status={status} />
         <AvatarContainer
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
@@ -170,7 +168,7 @@ function Card({ project }) {
             src={avatar ? avatar : "public/assets/icon/user-icon.svg"}
             alt="profile"
           />
-          <NameAvatar hover={hover}>{nameAvatar}</NameAvatar>
+          <NameAvatar $hover={hover}>{nameAvatar}</NameAvatar>
         </AvatarContainer>
       </Footer>
     </CardStyle>
